@@ -27,42 +27,33 @@ chrome://extensions/
 
 ---
 
-## Safari 安装
+## Safari 安装（只需 3 步）
 
-### 第一步：下载
-在 [Releases 页面](https://github.com/eason-joker/clipquotes/releases) 点击 `clipquotes-safari.zip` 下载。
+### 第一步：下载并解压
+在 [Releases 页面](https://github.com/eason-joker/clipquotes/releases) 下载 `clipquotes-safari.zip`，双击解压，得到 `safari/` 文件夹。
 
-### 第二步：解压
-双击 ZIP 文件解压，你会看到一个 `safari/` 文件夹。
+### 第二步：打开 Safari 扩展设置
+1. 打开 **Safari 浏览器**
+2. 点击顶部菜单 **Safari** → **设置**（或按 `⌘,`）
+3. 点击 **「扩展」** 标签
 
-### 第三步：打开 Safari 扩展页面
-打开 Safari → 点击 **Safari** 菜单 → **设置** → **扩展**
+### 第三步：安装扩展
+**直接用鼠标把 `safari/` 文件夹拖到 Safari 扩展设置窗口里，然后松开鼠标！**
 
-### 第四步：安装（拖拽）
-**直接把 `safari/` 文件夹拖到扩展页面上。**
-
-就这样！扩展会自动安装。
-
-### 第五步：启用
-确保 **ClipQuotes** 开关是开启状态。
-
-如果需要导出功能，同时勾选 **「允许扩展下载文件」**。
-
-### 第六步：完成！✅
-点击 Safari 工具栏的 ClipQuotes 图标即可使用！
+就这么简单！放手之后扩展就安装好了。
 
 ---
 
 ## 常见问题
 
-**Chrome 提示"缺少清单文件"**
-→ 确保你选择的是 `chrome/` 文件夹
+**问：拖进去之后什么都没发生？**
+答：确保拖的是 `safari/` 文件夹本身，不是里面的文件。
 
-**Safari 扩展无法安装**
-→ 确保拖动的是 `safari/` 文件夹本身，不是里面的文件
+**问：Safari 扩展页面在哪里？**
+答：Safari → Safari 菜单 → 设置 → 扩展
 
-**Safari 没有显示图标**
-→ 右键工具栏 → 「自定工具栏」→ 添加 ClipQuotes 图标
+**问：安装好了但图标不显示？**
+答：右键 Safari 工具栏 → 选择「自定工具栏」→ 把 ClipQuotes 拖到工具栏上
 
-**遇到问题？**
-→ 提交 [Issue](https://github.com/eason-joker/clipquotes/issues)
+**遇到其他问题？**
+答：提交 [Issue](https://github.com/eason-joker/clipquotes/issues)
