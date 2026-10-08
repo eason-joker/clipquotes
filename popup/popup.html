@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>知乎句子收藏夹</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 头部 -->
+    <header class="header">
+      <h1 class="title">📚 知乎句子收藏夹</h1>
+      <div class="header-actions">
+        <button id="btn-export" class="btn btn-sm" title="导出 Markdown">📥 导出</button>
+      </div>
+    </header>
+
+    <!-- 搜索栏 -->
+    <div class="search-box">
+      <input type="text" id="search-input" placeholder="🔍 搜索摘录、标题、标签、备注…" autocomplete="off">
+    </div>
+
+    <!-- 空状态提示 -->
+    <div id="empty-state" class="empty-state hidden">
+      <p>📭 还没有收藏内容</p>
+      <p class="empty-hint">在知乎页面选中句子 → 右键 →「收藏这句话」</p>
+    </div>
+
+    <!-- 非知乎页面提示 -->
+    <div id="non-zhihu-tip" class="non-zhihu-tip hidden">
+      <p>⚠️ 当前不在知乎页面，无法使用右键收藏</p>
+    </div>
+
+    <!-- 收藏列表 -->
+    <div id="list" class="list"></div>
+
+    <!-- 加载状态 -->
+    <div id="loading" class="loading hidden">
+      <span>加载中…</span>
+    </div>
+
+    <!-- 错误提示 -->
+    <div id="error" class="error hidden"></div>
+  </div>
+
+  <!-- 编辑弹窗 -->
+  <div id="edit-modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>编辑收藏</h2>
+        <button id="modal-close" class="modal-close" aria-label="关闭">✕</button>
+      </div>
+      <div class="modal-body">
+        <p id="modal-quote" class="modal-quote"></p>
+        <div class="form-group">
+          <label for="modal-tags">标签（用逗号分隔）</label>
+          <input type="text" id="modal-tags" placeholder="例如：产品, 思考, 金句">
+        </div>
+        <div class="form-group">
+          <label for="modal-note">备注</label>
+          <textarea id="modal-note" rows="3" placeholder="写下你的感想或说明…"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="modal-delete" class="btn btn-danger">删除</button>
+        <div class="modal-footer-right">
+          <button id="modal-cancel" class="btn btn-secondary">取消</button>
+          <button id="modal-save" class="btn btn-primary">保存</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,379 @@
+/* 知乎句子收藏夹 - Popup 样式 */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --primary: #0066cc;
+  --primary-hover: #0052a3;
+  --danger: #cc3333;
+  --danger-hover: #aa2222;
+  --secondary: #f5f5f5;
+  --border: #e0e0e0;
+  --text: #333333;
+  --text-secondary: #666666;
+  --text-muted: #999999;
+  --bg: #ffffff;
+  --bg-hover: #f7f7f7;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  --radius: 6px;
+  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+  font-family: var(--font);
+  font-size: 13px;
+  color: var(--text);
+  background: var(--bg);
+  width: 400px;
+  min-height: 300px;
+  max-height: 600px;
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* ── 头部 ── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+  flex-shrink: 0;
+}
+
+.title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.header-actions {
+  display: flex;
+  gap: 6px;
+}
+
+/* ── 按钮 ── */
+.btn {
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.btn:hover {
+  background: var(--bg-hover);
+  border-color: #ccc;
+}
+
+.btn-sm {
+  padding: 3px 8px;
+  font-size: 11px;
+}
+
+.btn-primary {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
+}
+
+.btn-danger {
+  background: var(--danger);
+  border-color: var(--danger);
+  color: #fff;
+}
+
+.btn-danger:hover {
+  background: var(--danger-hover);
+  border-color: var(--danger-hover);
+}
+
+.btn-secondary {
+  background: var(--secondary);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+/* ── 搜索框 ── */
+.search-box {
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.search-box input:focus {
+  border-color: var(--primary);
+}
+
+/* ── 列表 ── */
+.list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 6px 0;
+}
+
+.list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.list::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+
+/* ── 收藏卡片 ── */
+.card {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 0.12s;
+}
+
+.card:hover {
+  background: var(--bg-hover);
+}
+
+.card:last-child {
+  border-bottom: none;
+}
+
+.card-quote {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text);
+  margin-bottom: 5px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.card-meta a {
+  color: var(--primary);
+  text-decoration: none;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-meta a:hover {
+  text-decoration: underline;
+}
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  margin-bottom: 3px;
+}
+
+.tag {
+  display: inline-block;
+  padding: 1px 6px;
+  background: #e8f0ff;
+  color: var(--primary);
+  border-radius: 10px;
+  font-size: 10px;
+}
+
+.card-note {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-top: 3px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-time {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 3px;
+}
+
+/* ── 空状态 ── */
+.empty-state {
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.empty-state p:first-child {
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+.empty-hint {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ── 非知乎提示 ── */
+.non-zhihu-tip {
+  padding: 16px;
+  background: #fffbe6;
+  border-bottom: 1px solid #ffe58f;
+  font-size: 12px;
+  color: #ad6800;
+  text-align: center;
+}
+
+/* ── 加载和错误 ── */
+.loading, .error {
+  padding: 16px;
+  text-align: center;
+  font-size: 12px;
+}
+
+.error {
+  color: var(--danger);
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ── 弹窗 ── */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal-content {
+  background: var(--bg);
+  border-radius: var(--radius);
+  width: 360px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.modal-header h2 {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  color: var(--text-muted);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.modal-close:hover {
+  background: var(--bg-hover);
+  color: var(--text);
+}
+
+.modal-body {
+  padding: 14px 16px;
+}
+
+.modal-quote {
+  padding: 8px 10px;
+  background: var(--secondary);
+  border-radius: var(--radius);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  border-left: 3px solid var(--primary);
+  max-height: 80px;
+  overflow-y: auto;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-family: inherit;
+  outline: none;
+  resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--primary);
+}
+
+.modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  border-top: 1px solid var(--border);
+}
+
+.modal-footer-right {
+  display: flex;
+  gap: 6px;
+}
