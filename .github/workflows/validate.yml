@@ -1,0 +1,37 @@
+name: Validate Extension
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate Chrome manifest
+        run: |
+          echo "=== Checking Chrome manifest ==="
+          cat chrome/manifest.json | python3 -m json.tool > /dev/null && echo "✓ Chrome manifest.json is valid JSON"
+
+      - name: Validate Safari manifest
+        run: |
+          echo "=== Checking Safari manifest ==="
+          cat safari/manifest.json | python3 -m json.tool > /dev/null && echo "✓ Safari manifest.json is valid JSON"
+
+      - name: Check file structure
+        run: |
+          echo "=== Checking file structure ==="
+          test -f chrome/manifest.json && echo "✓ chrome/manifest.json exists"
+          test -f chrome/background.js && echo "✓ chrome/background.js exists"
+          test -f chrome/popup/popup.html && echo "✓ chrome/popup/popup.html exists"
+          test -f safari/manifest.json && echo "✓ safari/manifest.json exists"
+
+      - name: List files
+        run: |
+          echo "=== Project structure ==="
+          find . -type f -not -path './.git/*' -not -name '.DS_Store' | sort
