@@ -7,11 +7,11 @@ const $$ = (sel) => document.querySelectorAll(sel);
 let currentItems = [];
 let currentKeyword = '';
 let editingItem = null;
+let pendingDelete = null; // 待确认删除的回调
 
 // ── DOM 引用 ──────────────────────────────────────
 const elList = $('#list');
 const elEmpty = $('#empty-state');
-const elNonZhihu = $('#non-zhihu-tip');
 const elLoading = $('#loading');
 const elError = $('#error');
 const elSearch = $('#search-input');
@@ -24,6 +24,10 @@ const elModalClose = $('#modal-close');
 const elModalCancel = $('#modal-cancel');
 const elModalSave = $('#modal-save');
 const elModalDelete = $('#modal-delete');
+const elConfirmModal = $('#confirm-modal');
+const elConfirmMessage = $('#confirm-message');
+const elConfirmCancel = $('#confirm-cancel');
+const elConfirmOk = $('#confirm-ok');
 
 // ── API 封装 ──────────────────────────────────────
 function api(type, data = {}) {
@@ -80,18 +84,52 @@ function createCard(item) {
   card.innerHTML = `
     <div class="card-quote">${quote}</div>
     <div class="card-meta">
-      ${author ? `<span>👤 ${author}</span>` : ''}
+      ${author ? `<span>${author}</span>` : ''}
       <a href="${escapeHtml(item.pageUrl)}" target="_blank" title="${escapeHtml(item.pageUrl)}">${title}</a>
     </div>
     ${tags ? `<div class="card-tags">${tags}</div>` : ''}
-    ${note ? `<div class="card-note">📝 ${note}</div>` : ''}
-    <div class="card-time">🕐 ${time}</div>
+    ${note ? `<div class="card-note">${note}</div>` : ''}
+    <div class="card-time">${time}</div>
+    <div class="card-actions">
+      <button class="btn btn-copy" data-quote="${encodeURIComponent(item.quote)}">复制句子</button>
+      <button class="btn btn-edit" data-id="${item.id}">编辑</button>
+      <button class="btn btn-delete-card" data-id="${item.id}">删除</button>
+    </div>
   `;
 
-  card.addEventListener('click', (e) => {
-    // 如果点击的是链接，不打开编辑
-    if (e.target.tagName === 'A') return;
+  // 点击编辑按钮
+  card.querySelector('.btn-edit').addEventListener('click', (e) => {
+    e.stopPropagation();
     openEditModal(item);
+  });
+
+  // 点击复制按钮
+  card.querySelector('.btn-copy').addEventListener('click', (e) => {
+    e.stopPropagation();
+    const text = decodeURIComponent(e.currentTarget.dataset.quote);
+    navigator.clipboard.writeText(text).then(() => {
+      showToast('已复制到剪贴板');
+    }).catch(() => {
+      showError('复制失败');
+    });
+  });
+
+  // 点击删除按钮
+  card.querySelector('.btn-delete-card').addEventListener('click', (e) => {
+    e.stopPropagation();
+    console.log('[popup] delete button clicked, item id:', item.id);
+    showConfirm(`确定删除这条收藏？\n\n"${item.quote.slice(0, 50)}…"`, () => {
+      console.log('[popup] confirm OK, calling deleteItemById');
+      deleteItemById(item.id);
+    });
+  });
+
+  // 点击卡片（非按钮区域）跳转到知乎原文
+  card.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+    if (item.pageUrl) {
+      browser.tabs.create({ url: item.pageUrl, active: false });
+    }
   });
 
   return card;
@@ -140,16 +178,33 @@ async function saveEdit() {
 
 async function deleteItem() {
   if (!editingItem) return;
-  if (!confirm(`确定删除这条收藏？\n\n"${editingItem.quote.slice(0, 50)}…"`)) return;
-
-  try {
-    const res = await api('DELETE_ITEM', { id: editingItem.id });
-    if (!res.success) throw new Error(res.error);
-
-    currentItems = currentItems.filter(i => i.id !== editingItem.id);
+  showConfirm(`确定删除这条收藏？\n\n"${editingItem.quote.slice(0, 50)}…"`, async () => {
+    await deleteItemById(editingItem.id);
     closeEditModal();
+  });
+}
+
+function showConfirm(message, onOk) {
+  pendingDelete = onOk;
+  elConfirmMessage.textContent = message;
+  elConfirmModal.classList.remove('hidden');
+}
+
+function closeConfirm() {
+  pendingDelete = null;
+  elConfirmModal.classList.add('hidden');
+}
+
+async function deleteItemById(id) {
+  console.log('[popup] deleteItemById called, id:', id);
+  try {
+    const res = await api('DELETE_ITEM', { id });
+    console.log('[popup] delete response:', res);
+    if (!res.success) throw new Error(res.error || '未知错误');
+    currentItems = currentItems.filter(i => i.id !== id);
     renderList();
   } catch (err) {
+    console.error('[popup] delete error:', err);
     showError('删除失败：' + err.message);
   }
 }
@@ -159,15 +214,27 @@ async function exportMarkdown() {
     const res = await api('EXPORT_MD');
     if (!res.success) throw new Error(res.error);
 
-    const blob = new Blob([res.data], { type: 'text/markdown;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
+    const filename = `随手收藏_${formatDateForFile(new Date())}.md`;
+    const markdown = res.data;
+
+    // 创建 Blob 并触发下载
+    const blob = new Blob([markdown], { type: 'text/markdown;charset=utf-8' });
+    const blobUrl = URL.createObjectURL(blob);
+
     const a = document.createElement('a');
-    a.href = url;
-    a.download = `知乎收藏_${formatDateForFile(new Date())}.md`;
+    a.href = blobUrl;
+    a.download = filename;
+    a.style.display = 'none';
     document.body.appendChild(a);
     a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+
+    // 清理
+    setTimeout(() => {
+      document.body.removeChild(a);
+      URL.revokeObjectURL(blobUrl);
+    }, 100);
+
+    showToast('已下载 ' + filename);
   } catch (err) {
     showError('导出失败：' + err.message);
   }
@@ -202,6 +269,13 @@ function showError(msg) {
   setTimeout(() => elError.classList.add('hidden'), 4000);
 }
 
+function showToast(msg) {
+  const toast = $('#toast');
+  toast.textContent = msg;
+  toast.classList.remove('hidden');
+  setTimeout(() => toast.classList.add('hidden'), 2000);
+}
+
 // ── 事件绑定 ──────────────────────────────────────
 elSearch.addEventListener('input', () => {
   currentKeyword = elSearch.value.trim();
@@ -218,6 +292,17 @@ elModalDelete.addEventListener('click', deleteItem);
 // 点击弹窗背景关闭
 elModal.addEventListener('click', (e) => {
   if (e.target === elModal) closeEditModal();
+});
+
+// 确认弹窗事件
+elConfirmCancel.addEventListener('click', closeConfirm);
+elConfirmOk.addEventListener('click', () => {
+  const cb = pendingDelete;
+  closeConfirm();
+  if (cb) cb();
+});
+elConfirmModal.addEventListener('click', (e) => {
+  if (e.target === elConfirmModal) closeConfirm();
 });
 
 // ESC 关闭弹窗

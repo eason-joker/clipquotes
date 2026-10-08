@@ -3,33 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>知乎句子收藏夹</title>
+  <title>随手收藏</title>
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
   <div class="container">
     <!-- 头部 -->
     <header class="header">
-      <h1 class="title">📚 知乎句子收藏夹</h1>
+      <h1 class="title">随手收藏</h1>
       <div class="header-actions">
-        <button id="btn-export" class="btn btn-sm" title="导出 Markdown">📥 导出</button>
+        <button id="btn-export" class="btn btn-sm" title="导出 Markdown">导出</button>
       </div>
     </header>
 
     <!-- 搜索栏 -->
     <div class="search-box">
-      <input type="text" id="search-input" placeholder="🔍 搜索摘录、标题、标签、备注…" autocomplete="off">
+      <input type="text" id="search-input" placeholder="搜索摘录、标题、标签、备注" autocomplete="off">
     </div>
 
     <!-- 空状态提示 -->
     <div id="empty-state" class="empty-state hidden">
-      <p>📭 还没有收藏内容</p>
-      <p class="empty-hint">在知乎页面选中句子 → 右键 →「收藏这句话」</p>
-    </div>
-
-    <!-- 非知乎页面提示 -->
-    <div id="non-zhihu-tip" class="non-zhihu-tip hidden">
-      <p>⚠️ 当前不在知乎页面，无法使用右键收藏</p>
+      <p>还没有收藏内容</p>
+      <p class="empty-hint">在任意页面选中文字 → 右键 →「收藏这句话」</p>
     </div>
 
     <!-- 收藏列表 -->
@@ -72,6 +67,25 @@
     </div>
   </div>
 
-  <script src="popup.js" type="module"></script>
+  <!-- Toast 提示 -->
+  <div id="toast" class="toast hidden"></div>
+
+  <!-- 删除确认弹窗 -->
+  <div id="confirm-modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-content confirm-content">
+      <div class="modal-header">
+        <h2>确认删除</h2>
+      </div>
+      <div class="modal-body">
+        <p id="confirm-message"></p>
+      </div>
+      <div class="modal-footer">
+        <button id="confirm-cancel" class="btn btn-secondary">取消</button>
+        <button id="confirm-ok" class="btn btn-danger">删除</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
 </body>
 </html>

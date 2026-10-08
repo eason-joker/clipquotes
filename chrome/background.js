@@ -1,11 +1,24 @@
-// 知乎句子收藏夹 - 后台脚本
+// 随手收藏 - 后台脚本
 // 负责右键菜单、存储管理和消息传递
 
-const STORE_KEY = 'zhiHuFavorites';
+const STORE_KEY = 'favorites';
+const OLD_STORE_KEY = 'zhiHuFavorites';
 
 async function getAll() {
   const result = await browser.storage.local.get(STORE_KEY);
-  return result[STORE_KEY] || [];
+  let items = result[STORE_KEY] || [];
+
+  // 迁移旧数据（如果新 key 为空但旧 key 有数据）
+  if (items.length === 0) {
+    const oldResult = await browser.storage.local.get(OLD_STORE_KEY);
+    const oldItems = oldResult[OLD_STORE_KEY] || [];
+    if (oldItems.length > 0) {
+      items = oldItems;
+      await saveAll(items);
+    }
+  }
+
+  return items;
 }
 
 async function saveAll(items) {
@@ -22,7 +35,7 @@ browser.runtime.onInstalled.addListener(() => {
     title: '收藏这句话',
     contexts: ['selection']
   });
-  console.log('[知乎句子收藏夹] 扩展已安装，右键菜单已创建');
+  console.log('[随手收藏] 扩展已安装，右键菜单已创建');
 });
 
 browser.contextMenus.onClicked.addListener(async (info, tab) => {
@@ -32,14 +45,12 @@ browser.contextMenus.onClicked.addListener(async (info, tab) => {
   const quote = info.selectionText.trim();
   const pageUrl = tab.url || '';
   const pageTitle = tab.title || '';
-  const isZhihu = pageUrl.includes('zhihu.com');
 
   const item = {
     id: generateId(),
     quote,
     pageUrl,
     pageTitle,
-    author: '',
     tags: [],
     note: '',
     createdAt: new Date().toISOString(),
@@ -69,7 +80,7 @@ browser.contextMenus.onClicked.addListener(async (info, tab) => {
       message: `"${quote.slice(0, 30)}${quote.length > 30 ? '…' : ''}" 已保存。`
     });
   } catch (err) {
-    console.error('[知乎句子收藏夹] 保存失败:', err);
+    console.error('[随手收藏] 保存失败:', err);
     browser.notifications.create({
       type: 'basic',
       iconUrl: 'icons/icon-48.png',
@@ -132,7 +143,7 @@ browser.runtime.onMessage.addListener((msg, sender) => {
 
 function exportToMarkdown(items) {
   const lines = [];
-  lines.push('# 知乎句子收藏');
+  lines.push('# 随手收藏');
   lines.push('');
   if (!items.length) {
     lines.push('（空）');
@@ -148,10 +159,6 @@ function exportToMarkdown(items) {
     lines.push('**摘录：**');
     lines.push('> ' + item.quote);
     lines.push('');
-    if (item.author) {
-      lines.push('**作者：** ' + item.author);
-      lines.push('');
-    }
     lines.push('**来源：** [' + item.pageUrl + '](' + item.pageUrl + ')');
     lines.push('**收藏时间：** ' + new Date(item.createdAt).toLocaleString('zh-CN'));
     if (item.tags && item.tags.length) {

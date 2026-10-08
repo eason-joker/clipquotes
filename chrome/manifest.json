@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "知乎句子收藏夹",
+  "name": "随手收藏",
   "version": "1.0.0",
-  "description": "在知乎选中句子，通过右键菜单收藏，支持标签、备注、搜索和 Markdown 导出",
+  "description": "选中任意页面的句子，右键收藏，支持标签、备注、搜索和 Markdown 导出",
   "icons": {
     "48": "icons/icon-48.png",
     "96": "icons/icon-96.png",
@@ -18,11 +18,11 @@
       "16": "icons/icon-16.png",
       "32": "icons/icon-32.png"
     },
-    "default_title": "知乎句子收藏夹"
+    "default_title": "随手收藏"
   },
   "content_scripts": [
     {
-      "matches": ["*://*.zhihu.com/*"],
+      "matches": ["<all_urls>"],
       "js": ["content.js"],
       "run_at": "document_end"
     }
@@ -32,9 +32,7 @@
     "activeTab",
     "storage"
   ],
-  "host_permissions": [
-    "*://*.zhihu.com/*"
-  ],
+  "host_permissions": [],
   "commands": {},
   "web_accessible_resources": [
     {
