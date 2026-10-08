@@ -40,6 +40,10 @@ chrome://extensions/
 ### 第三步：安装扩展
 **直接用鼠标把 `safari/` 文件夹拖到 Safari 扩展设置窗口里，然后松开鼠标！**
 
+看下图示：
+
+![Safari 安装图示](screenshots/safari-install-guide.png)
+
 就这么简单！放手之后扩展就安装好了。
 
 ---

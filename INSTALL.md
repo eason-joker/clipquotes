@@ -40,6 +40,10 @@ Download `clipquotes-safari.zip` from the [Releases page](https://github.com/eas
 ### Step 3: Install
 **Drag the `safari/` folder and drop it anywhere onto the Safari Extensions settings window, then release.**
 
+See illustration below:
+
+![Safari Install Guide](screenshots/safari-install-guide.png)
+
 That's it! The extension will be installed automatically.
 
 ---
