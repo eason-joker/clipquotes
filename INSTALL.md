@@ -27,7 +27,7 @@ Click the ClipQuotes icon in your toolbar.
 
 ---
 
-## Safari Installation (3 Steps)
+## Safari Installation
 
 ### Step 1: Download & Extract
 Download `clipquotes-safari.zip` from the [Releases page](https://github.com/eason-joker/clipquotes/releases). Double-click to extract. You should see a `safari/` folder.
@@ -40,11 +40,31 @@ Download `clipquotes-safari.zip` from the [Releases page](https://github.com/eas
 ### Step 3: Install
 Drag the `safari/` folder and drop it onto the Safari Extensions settings window, then release.
 
-That's it!
+### Step 4: Allow Unsigned Extensions
+Since this is an open-source extension without Apple signature, Safari may show a warning. You need to enable it manually:
+
+**Option A: System Settings**
+1. Open **System Settings** → **Privacy & Security**
+2. Scroll down to find **"Open anyway"** option
+3. Click it, find **Safari**, and select **"Open anyway"**
+4. Try installing the extension again
+
+**Option B: Control + Click**
+1. Open Safari while holding the **Control** key
+2. Right-click on the extension
+3. Select **"Open"**
+
+### Step 5: Enable Extension
+Return to Safari Extensions settings, make sure **ClipQuotes** toggle is ON.
+
+If you need the export feature, also check **"Allow extensions to download files"**.
 
 ---
 
 ## FAQ
+
+**Q: Safari says the extension is unsigned and won't install?**
+A: This is normal. Since it's an open-source project without Apple signature, you need to allow it in System Settings. See Step 4 above.
 
 **Q: Dragged but nothing happened?**
 A: Make sure you're dragging the `safari/` folder itself, not files inside it.
