@@ -1,8 +1,9 @@
 # ClipQuotes
 
-A browser extension that lets you select text on any page and save it with a right-click. Perfect for collecting inspiring quotes, passages, and insights from Zhihu, blogs, articles, and more.
+A browser extension that lets you select text on any page and save it with a right-click. Perfect for collecting inspiring quotes, passages, and insights.
 
-Supports Chrome, Edge, and Safari browsers.
+[![GitHub stars](https://img.shields.io/github/stars/eason-joker/clipquotes?style=social)](https://github.com/eason-joker/clipquotes/stargazers)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 ## Features
 
@@ -18,29 +19,45 @@ Supports Chrome, Edge, and Safari browsers.
 | **Markdown export** | Export all quotes as a Markdown file |
 | **Local storage** | Data stays on your device — no cloud, no login |
 
+## Screenshots
+
+### Main Popup
+![Main Popup](screenshots/popup-main.png)
+
+### Edit Modal
+![Edit Modal](screenshots/popup-edit.png)
+
 ## Supported Browsers
 
 | Browser | Requirements | Installation |
 |---------|--------------|--------------|
-| Chrome / Edge | Manifest V3 support | Developer mode load |
-| Safari | macOS Safari 16+ | Developer mode load |
+| Chrome / Edge | Manifest V3 | [Download ZIP](#download) → Developer mode |
+| Safari | macOS Safari 16+ | [Download ZIP](#download) → Developer mode |
+
+## Download
+
+### Chrome / Edge
+**[Download ClipQuotes for Chrome](releases/clipquotes-chrome.zip)**
+
+### Safari
+**[Download ClipQuotes for Safari](releases/clipquotes-safari.zip)**
 
 ## Installation
 
 ### Chrome / Edge
 
-1. Download or clone this repo
+1. Download the [Chrome ZIP](releases/clipquotes-chrome.zip)
 2. Open `chrome://extensions/`
 3. Enable **"Developer mode"** (top right)
 4. Click **"Load unpacked"**
-5. Select the `chrome/` folder
+5. Select the unzipped `chrome/` folder
 
 ### Safari
 
-1. Download or clone this repo
+1. Download the [Safari ZIP](releases/clipquotes-safari.zip)
 2. Open Safari → **Preferences** → **Extensions**
-3. Enable **"Allow extensions to download files"** (if you need export)
-4. Select "ClipQuotes" and enable the extension
+3. Enable **"Allow extensions to download files"** (for export feature)
+4. Select **"ClipQuotes"** and enable
 5. For debugging: Safari menu → Develop → Show Extension Builder
 
 ## Project Structure
@@ -49,6 +66,7 @@ Supports Chrome, Edge, and Safari browsers.
 ClipQuotes/
 ├── README.md            # This file
 ├── LICENSE              # MIT License
+├── CONTRIBUTING.md      # Contribution guidelines
 ├── chrome/              # Chrome/Edge version
 │   ├── manifest.json
 │   ├── background.js
@@ -58,12 +76,19 @@ ClipQuotes/
 │   │   ├── popup.css
 │   │   └── popup.js
 │   └── icons/
-└── safari/             # Safari version
-    ├── manifest.json
-    ├── background.js
-    ├── content.js
-    ├── popup/
-    └── icons/
+├── safari/             # Safari version
+│   ├── manifest.json
+│   ├── background.js
+│   ├── content.js
+│   ├── popup/
+│   └── icons/
+├── releases/           # Pre-built ZIP packages
+│   ├── clipquotes-chrome.zip
+│   └── clipquotes-safari.zip
+├── screenshots/       # UI screenshots
+└── .github/          # GitHub config
+    ├── workflows/
+    └── ISSUE_TEMPLATE/
 ```
 
 ## Permissions
@@ -88,13 +113,17 @@ ClipQuotes/
 **Quote:**
 > The most precious thing in life is time. Each person has only one life...
 
-**Source:** [Zhihu - What is happiness](https://www.zhihu.com/question/12345)
+**Source:** [Article - What is happiness](https://example.com/article)
 **Saved:** 1/15/2024, 2:25 PM
 **Tags:** life, wisdom
 **Note:** Classic quote
 
 ---
 ```
+
+## Contributing
+
+Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ## License
 
