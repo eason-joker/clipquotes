@@ -15,16 +15,15 @@ chrome://extensions/
 ```
 
 ### Step 4: Enable Developer Mode
-Look at the top right of the extensions page. Toggle **"Developer mode"** to ON (blue).
+Toggle **"Developer mode"** to ON (top right).
 
 ### Step 5: Load Extension
-1. Click the **"Load unpacked"** button (top left)
-2. Select the extracted `chrome/` folder
-3. Click "Select Folder" (Mac) or "OK" (Windows)
+1. Click **"Load unpacked"** (top left)
+2. Select the `chrome/` folder
+3. Click "Select Folder"
 
-### Step 6: Done!
-- Find the ClipQuotes icon in your browser toolbar
-- Click it to open and start saving quotes!
+### Step 6: Done! ✅
+Click the ClipQuotes icon in your toolbar to start using it.
 
 ---
 
@@ -34,32 +33,36 @@ Look at the top right of the extensions page. Toggle **"Developer mode"** to ON 
 Click `clipquotes-safari.zip` on the [Releases page](https://github.com/eason-joker/clipquotes/releases) to download.
 
 ### Step 2: Extract
-Double-click the ZIP file to extract it. You should see a `ClipQuotes.safariextension` folder.
+Double-click the ZIP file to extract it. You should see a `safari/` folder.
 
-### Step 3: Install
-**Double-click the `ClipQuotes.safariextension` folder.**
-Safari will prompt you to confirm the installation.
+### Step 3: Open Safari Extensions Page
+Open Safari → Click **Safari** menu → **Settings** → **Extensions**
 
-### Step 4: Enable in Safari
-1. Open Safari → Click **Safari** menu → **Settings** (or press `⌘,`)
-2. Go to the **"Extensions"** tab
-3. Find **ClipQuotes** and toggle it to **ON**
-4. If you want export feature: enable **"Allow extensions to download files"**
+### Step 4: Install (Drag & Drop)
+**Simply drag the `safari/` folder onto the Extensions page.**
 
-### Step 5: Done!
-- Find the ClipQuotes icon in your browser toolbar
-- Click it to open and start saving quotes!
+That's it! The extension will be automatically installed.
+
+### Step 5: Enable
+Make sure **ClipQuotes** toggle is ON.
+
+If you want the export feature to work, also check **"Allow extensions to download files"**.
+
+### Step 6: Done! ✅
+Click the ClipQuotes icon in your Safari toolbar to start using it.
 
 ---
 
 ## Troubleshooting
 
-**Chrome says "Manifest file is missing"?**
-- Make sure you selected the `chrome/` folder (not the inner contents)
+**Chrome: "Manifest file is missing"**
+→ Make sure you selected the `chrome/` folder (not individual files)
 
-**Safari doesn't show the icon?**
-- Right-click the Safari toolbar → Select "Customize Control Strip"
-- Drag ClipQuotes icon to your toolbar
+**Safari: Extension not installing**
+→ Make sure you're dragging the `safari/` folder itself, not the files inside it
+
+**Safari: Icon not showing**
+→ Right-click toolbar → "Customize Control Strip" → Add ClipQuotes icon
 
 **Need help?**
-- Open an [Issue](https://github.com/eason-joker/clipquotes/issues)
+→ Open an [Issue](https://github.com/eason-joker/clipquotes/issues)
