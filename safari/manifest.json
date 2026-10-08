@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "随手收藏",
+  "name": "ClipQuotes",
   "version": "1.0.0",
-  "description": "选中任意页面的句子，右键收藏，支持标签、备注、搜索和 Markdown 导出",
+  "description": "Select text on any page, right-click to save. Supports tags, notes, search, and Markdown export.",
   "icons": {
     "48": "icons/icon-48.png",
     "96": "icons/icon-96.png",
@@ -18,7 +18,7 @@
       "16": "icons/icon-16.png",
       "32": "icons/icon-32.png"
     },
-    "default_title": "随手收藏"
+    "default_title": "ClipQuotes"
   },
   "content_scripts": [
     {

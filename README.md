@@ -1,55 +1,55 @@
-# 随手收藏
+# ClipQuotes
 
-一个浏览器扩展，在任意网页选中文字，通过右键菜单收藏。适合收集知乎、公众号等平台的精彩段落和人生感悟。
+A browser extension that lets you select text on any page and save it with a right-click. Perfect for collecting inspiring quotes, passages, and insights from Zhihu, blogs, articles, and more.
 
-支持 Chrome、Edge 和 Safari 浏览器。
+Supports Chrome, Edge, and Safari browsers.
 
-## 功能特性
+## Features
 
-| 功能 | 说明 |
-|------|------|
-| **右键收藏** | 在任意页面选中文字 → 右键 →「收藏这句话」 |
-| **来源记录** | 自动保存：原文、页面标题、链接、收藏时间 |
-| **标签管理** | 为每条收藏添加多个标签，方便分类 |
-| **备注** | 写下你的感想或补充说明 |
-| **搜索** | 支持按摘录、标题、标签、备注全文搜索 |
-| **编辑/删除** | 点击卡片按钮编辑标签、备注或删除 |
-| **复制句子** | 一键复制原文，便于在原站搜索定位 |
-| **Markdown 导出** | 一键导出全部收藏为 Markdown 文件 |
-| **本地存储** | 所有数据仅保存在本机，不上传、不登录 |
+| Feature | Description |
+|---------|-------------|
+| **Right-click to save** | Select text → Right-click → "Save Quote" |
+| **Source tracking** | Automatically saves: page title, URL, timestamp |
+| **Tags** | Add multiple tags to organize your collection |
+| **Notes** | Add your thoughts or comments |
+| **Search** | Full-text search across quotes, titles, tags, and notes |
+| **Edit/Delete** | Edit tags, notes, or delete items |
+| **Copy text** | One-click copy to clipboard |
+| **Markdown export** | Export all quotes as a Markdown file |
+| **Local storage** | Data stays on your device — no cloud, no login |
 
-## 支持浏览器
+## Supported Browsers
 
-| 浏览器 | 版本要求 | 安装方式 |
-|--------|----------|----------|
-| Chrome / Edge | Manifest V3 支持 | 开发者模式加载 |
-| Safari | macOS Safari 16+ | 开发者模式加载 |
+| Browser | Requirements | Installation |
+|---------|--------------|--------------|
+| Chrome / Edge | Manifest V3 support | Developer mode load |
+| Safari | macOS Safari 16+ | Developer mode load |
 
-## 安装说明
+## Installation
 
 ### Chrome / Edge
 
-1. 下载/克隆本仓库
-2. 打开 `chrome://extensions/`
-3. 开启右上角 **「开发者模式」**
-4. 点击 **「加载已解压的扩展程序」**
-5. 选择本仓库中的 `chrome/` 文件夹
+1. Download or clone this repo
+2. Open `chrome://extensions/`
+3. Enable **"Developer mode"** (top right)
+4. Click **"Load unpacked"**
+5. Select the `chrome/` folder
 
 ### Safari
 
-1. 下载/克隆本仓库
-2. 打开 Safari → **偏好设置** → **扩展**
-3. 开启 **「允许扩展下载文件」**（如需要导出功能）
-4. 左侧选择 **「随手收藏」**，开启扩展
-5. 如需调试：在 Safari 菜单 → 开发 → 显示扩展构造器
+1. Download or clone this repo
+2. Open Safari → **Preferences** → **Extensions**
+3. Enable **"Allow extensions to download files"** (if you need export)
+4. Select "ClipQuotes" and enable the extension
+5. For debugging: Safari menu → Develop → Show Extension Builder
 
-## 项目结构
+## Project Structure
 
 ```
-随手收藏/
-├── README.md            # 本文件
-├── LICENSE              # MIT 许可证
-├── chrome/              # Chrome/Edge 版本
+ClipQuotes/
+├── README.md            # This file
+├── LICENSE              # MIT License
+├── chrome/              # Chrome/Edge version
 │   ├── manifest.json
 │   ├── background.js
 │   ├── content.js
@@ -58,7 +58,7 @@
 │   │   ├── popup.css
 │   │   └── popup.js
 │   └── icons/
-└── safari/              # Safari 版本
+└── safari/             # Safari version
     ├── manifest.json
     ├── background.js
     ├── content.js
@@ -66,36 +66,36 @@
     └── icons/
 ```
 
-## 权限说明
+## Permissions
 
-| 权限 | 用途 |
-|------|------|
-| `contextMenus` | 创建右键菜单"收藏这句话" |
-| `activeTab` | 获取当前页面信息（标题、URL） |
-| `storage` | 将收藏记录保存在浏览器本地 |
+| Permission | Purpose |
+|------------|---------|
+| `contextMenus` | Create right-click menu "Save Quote" |
+| `activeTab` | Get current page info (title, URL) |
+| `storage` | Save quotes to browser local storage |
 
-**隐私承诺：** 本扩展不会收集、传输或分享任何用户数据。
+**Privacy:** This extension does not collect, transmit, or share any user data.
 
-## 导出 Markdown 格式示例
+## Markdown Export Example
 
 ```markdown
-# 随手收藏
+# ClipQuotes
 
-> 共 3 条  |  导出时间：2024/1/15 14:30
+> 3 items  |  Exported: 1/15/2024, 2:30 PM
 
-## 1. 什么是幸福
+## 1. What is happiness
 
-**摘录：**
-> 人最宝贵的是生命，生命对每个人只有一次。人的一生应当这样度过...
+**Quote:**
+> The most precious thing in life is time. Each person has only one life...
 
-**来源：** [知乎 - 什么是幸福](https://www.zhihu.com/question/12345)
-**收藏时间：** 2024/1/15 14:25
-**标签：** 人生、感悟
-**备注：** 经典名言
+**Source:** [Zhihu - What is happiness](https://www.zhihu.com/question/12345)
+**Saved:** 1/15/2024, 2:25 PM
+**Tags:** life, wisdom
+**Note:** Classic quote
 
 ---
 ```
 
 ## License
 
-MIT License - 详见 [LICENSE](LICENSE)
+MIT License - see [LICENSE](LICENSE)

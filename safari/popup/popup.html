@@ -1,87 +1,87 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>随手收藏</title>
+  <title>ClipQuotes</title>
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
   <div class="container">
-    <!-- 头部 -->
+    <!-- Header -->
     <header class="header">
-      <h1 class="title">随手收藏</h1>
+      <h1 class="title">ClipQuotes</h1>
       <div class="header-actions">
-        <button id="btn-export" class="btn btn-sm" title="导出 Markdown">导出</button>
+        <button id="btn-export" class="btn btn-sm" title="Export as Markdown">Export</button>
       </div>
     </header>
 
-    <!-- 搜索栏 -->
+    <!-- Search -->
     <div class="search-box">
-      <input type="text" id="search-input" placeholder="搜索摘录、标题、标签、备注" autocomplete="off">
+      <input type="text" id="search-input" placeholder="Search quotes, titles, tags, notes" autocomplete="off">
     </div>
 
-    <!-- 空状态提示 -->
+    <!-- Empty state -->
     <div id="empty-state" class="empty-state hidden">
-      <p>还没有收藏内容</p>
-      <p class="empty-hint">在任意页面选中文字 → 右键 →「收藏这句话」</p>
+      <p>No saved quotes yet</p>
+      <p class="empty-hint">Select text on any page → Right-click → "Save Quote"</p>
     </div>
 
-    <!-- 收藏列表 -->
+    <!-- List -->
     <div id="list" class="list"></div>
 
-    <!-- 加载状态 -->
+    <!-- Loading -->
     <div id="loading" class="loading hidden">
-      <span>加载中…</span>
+      <span>Loading…</span>
     </div>
 
-    <!-- 错误提示 -->
+    <!-- Error -->
     <div id="error" class="error hidden"></div>
   </div>
 
-  <!-- 编辑弹窗 -->
+  <!-- Edit modal -->
   <div id="edit-modal" class="modal hidden" role="dialog" aria-modal="true">
     <div class="modal-content">
       <div class="modal-header">
-        <h2>编辑收藏</h2>
-        <button id="modal-close" class="modal-close" aria-label="关闭">✕</button>
+        <h2>Edit</h2>
+        <button id="modal-close" class="modal-close" aria-label="Close">✕</button>
       </div>
       <div class="modal-body">
         <p id="modal-quote" class="modal-quote"></p>
         <div class="form-group">
-          <label for="modal-tags">标签（用逗号分隔）</label>
-          <input type="text" id="modal-tags" placeholder="例如：产品, 思考, 金句">
+          <label for="modal-tags">Tags (comma separated)</label>
+          <input type="text" id="modal-tags" placeholder="e.g., life, wisdom, inspiration">
         </div>
         <div class="form-group">
-          <label for="modal-note">备注</label>
-          <textarea id="modal-note" rows="3" placeholder="写下你的感想或说明…"></textarea>
+          <label for="modal-note">Note</label>
+          <textarea id="modal-note" rows="3" placeholder="Add your thoughts…"></textarea>
         </div>
       </div>
       <div class="modal-footer">
-        <button id="modal-delete" class="btn btn-danger">删除</button>
+        <button id="modal-delete" class="btn btn-danger">Delete</button>
         <div class="modal-footer-right">
-          <button id="modal-cancel" class="btn btn-secondary">取消</button>
-          <button id="modal-save" class="btn btn-primary">保存</button>
+          <button id="modal-cancel" class="btn btn-secondary">Cancel</button>
+          <button id="modal-save" class="btn btn-primary">Save</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Toast 提示 -->
+  <!-- Toast -->
   <div id="toast" class="toast hidden"></div>
 
-  <!-- 删除确认弹窗 -->
+  <!-- Confirm modal -->
   <div id="confirm-modal" class="modal hidden" role="dialog" aria-modal="true">
     <div class="modal-content confirm-content">
       <div class="modal-header">
-        <h2>确认删除</h2>
+        <h2>Confirm Delete</h2>
       </div>
       <div class="modal-body">
         <p id="confirm-message"></p>
       </div>
       <div class="modal-footer">
-        <button id="confirm-cancel" class="btn btn-secondary">取消</button>
-        <button id="confirm-ok" class="btn btn-danger">删除</button>
+        <button id="confirm-cancel" class="btn btn-secondary">Cancel</button>
+        <button id="confirm-ok" class="btn btn-danger">Delete</button>
       </div>
     </div>
   </div>

@@ -1,4 +1,4 @@
-/* 知乎句子收藏夹 - Apple 简洁高端风格 */
+/* ClipQuotes - Clean Apple-inspired style */
 
 * {
   box-sizing: border-box;
@@ -42,7 +42,7 @@ body {
   height: 100%;
 }
 
-/* ── 头部 ── */
+/* ── Header ── */
 .header {
   display: flex;
   align-items: center;
@@ -59,7 +59,7 @@ body {
   letter-spacing: -0.2px;
 }
 
-/* ── 按钮（Apple 风格）── */
+/* ── Buttons ── */
 .btn {
   padding: 5px 12px;
   border: none;
@@ -105,7 +105,7 @@ body {
   color: var(--text);
 }
 
-/* ── 搜索框 ── */
+/* ── Search ── */
 .search-box {
   padding: 10px 18px;
   border-bottom: 0.5px solid var(--border-light);
@@ -134,7 +134,7 @@ body {
   color: var(--text-muted);
 }
 
-/* ── 列表 ── */
+/* ── List ── */
 .list {
   flex: 1;
   overflow-y: auto;
@@ -150,7 +150,7 @@ body {
   border-radius: 2px;
 }
 
-/* ── 收藏卡片 ── */
+/* ── Card ── */
 .card {
   padding: 12px 18px;
   border-bottom: 0.5px solid var(--border-light);
@@ -240,7 +240,7 @@ body {
   margin-bottom: 8px;
 }
 
-/* ── 操作按钮行 ── */
+/* ── Card Actions ── */
 .card-actions {
   display: flex;
   gap: 6px;
@@ -253,7 +253,7 @@ body {
   border-radius: 6px;
 }
 
-/* ── 空状态 ── */
+/* ── Empty State ── */
 .empty-state {
   padding: 48px 24px;
   text-align: center;
@@ -271,7 +271,7 @@ body {
   line-height: 1.5;
 }
 
-/* ── 非知乎提示 ── */
+/* ── Tip ── */
 .non-zhihu-tip {
   padding: 12px 18px;
   background: #fffbe6;
@@ -280,7 +280,7 @@ body {
   border-bottom: 0.5px solid #ffe58f;
 }
 
-/* ── 加载和错误 ── */
+/* ── Loading & Error ── */
 .loading, .error {
   padding: 16px;
   text-align: center;
@@ -296,7 +296,7 @@ body {
   display: none !important;
 }
 
-/* ── 弹窗（毛玻璃风格）── */
+/* ── Modal ── */
 .modal {
   position: fixed;
   inset: 0;
@@ -420,12 +420,12 @@ body {
   gap: 6px;
 }
 
-/* ── 确认弹窗 ── */
+/* ── Confirm Modal ── */
 .confirm-content {
   width: 300px;
 }
 
-/* ── Toast 提示 ── */
+/* ── Toast ── */
 .toast {
   position: fixed;
   bottom: 20px;
