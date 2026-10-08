@@ -34,23 +34,19 @@ Look at the top right of the extensions page. Toggle **"Developer mode"** to ON 
 Click `clipquotes-safari.zip` on the [Releases page](https://github.com/eason-joker/clipquotes/releases) to download.
 
 ### Step 2: Extract
-Double-click the ZIP file to extract it. You should see a `safari/` folder.
+Double-click the ZIP file to extract it. You should see a `ClipQuotes.safariextension` folder.
 
-### Step 3: Open Safari Preferences
-Open Safari → Click **Safari** menu → **Settings** (or press `⌘,`)
+### Step 3: Install
+**Double-click the `ClipQuotes.safariextension` folder.**
+Safari will prompt you to confirm the installation.
 
-### Step 4: Go to Extensions
-Click the **"Extensions"** tab at the top.
+### Step 4: Enable in Safari
+1. Open Safari → Click **Safari** menu → **Settings** (or press `⌘,`)
+2. Go to the **"Extensions"** tab
+3. Find **ClipQuotes** and toggle it to **ON**
+4. If you want export feature: enable **"Allow extensions to download files"**
 
-### Step 5: Install
-- Option A: Drag the extracted `safari/` folder directly onto the Extensions page
-- Option B: Click the **"+"** button and select the `safari/` folder
-
-### Step 6: Enable & Allow
-- Toggle ClipQuotes to **ON**
-- If you want export feature: enable **"Allow extensions to download files"**
-
-### Step 7: Done!
+### Step 5: Done!
 - Find the ClipQuotes icon in your browser toolbar
 - Click it to open and start saving quotes!
 
@@ -62,7 +58,8 @@ Click the **"Extensions"** tab at the top.
 - Make sure you selected the `chrome/` folder (not the inner contents)
 
 **Safari doesn't show the icon?**
-- Right-click the Safari toolbar → Select "Show Icon" → Find ClipQuotes
+- Right-click the Safari toolbar → Select "Customize Control Strip"
+- Drag ClipQuotes icon to your toolbar
 
 **Need help?**
 - Open an [Issue](https://github.com/eason-joker/clipquotes/issues)

@@ -34,23 +34,19 @@ chrome://extensions/
 在 [Releases 页面](https://github.com/eason-joker/clipquotes/releases) 点击 `clipquotes-safari.zip` 下载。
 
 ### 第二步：解压
-双击 ZIP 文件解压，你会看到一个 `safari/` 文件夹。
+双击 ZIP 文件解压，你会看到一个 `ClipQuotes.safariextension` 文件夹。
 
-### 第三步：打开 Safari 偏好设置
-打开 Safari → 点击 **Safari** 菜单 → **设置**（或按 `⌘,`）
+### 第三步：安装
+**双击 `ClipQuotes.safariextension` 文件夹。**
+Safari 会弹出确认安装提示。
 
-### 第四步：进入扩展
-点击顶部的 **「扩展」** 标签。
+### 第四步：在 Safari 中启用
+1. 打开 Safari → 点击 **Safari** 菜单 → **设置**（或按 `⌘,`）
+2. 点击 **「扩展」** 标签
+3. 找到 **ClipQuotes**，点击开启
+4. 如果需要导出功能：开启 **「允许扩展下载文件」**
 
-### 第五步：安装
-- 方法 A：直接将 `safari/` 文件夹拖到扩展页面上
-- 方法 B：点击左下角的 **「+」** 按钮，选择 `safari/` 文件夹
-
-### 第六步：启用
-- 将 ClipQuotes 开关**开启**
-- 如果需要导出功能：开启 **「允许扩展下载文件」**
-
-### 第七步：完成！
+### 第五步：完成！
 - 浏览器工具栏会出现 ClipQuotes 图标
 - 点击图标即可使用！
 
@@ -63,7 +59,7 @@ chrome://extensions/
 
 **Safari 没有显示图标？**
 - 右键点击 Safari 工具栏 → 选择「自定工具栏」
-- 找到 ClipQuotes 图标拖到工具栏上
+- 把 ClipQuotes 图标拖到工具栏上
 
 **遇到问题？**
 - 提交 [Issue](https://github.com/eason-joker/clipquotes/issues)
